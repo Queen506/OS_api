@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Os-Work</title>
+    <link rel="stylesheet" href="os_style.css" />
+    <style>
+      body {
+        background-image: url("world-map-pro.jpg");
+        background-size: 100%;
+        padding-top: 100px;
+        background-repeat: no-repeat;
+      }
+      h1 {
+        background-color: rgb(86, 178, 231);
+        text-align: center;
+        padding: 10px;
+      }
+      #divstyle {
+        text-align: center;
+        width: 500;
+        height: 500;
+        background-color: rgb(215, 174, 228);
+      }
+      h2 {
+        text-align: center;
+        font-family: Cursive;
+        background-color: rgb(66, 242, 133);
+        
+        
+      }
+ 
+  
+
+      
+    </style>
+  </head>
+  <body id="body">
+    <div id="divstyle">
+      <h1 style="font-family: Cursive">Find The Capital City</h1>
+      
+      <label style="font-size: 150% ; font-family: Cursive">Enter Country Name </label>
+      <input type="text" id="name" required />
+      <button type="button" onclick="Fatch()">submit</button>
+      <p style="color: rgb(192, 58, 34) ; font-family: Cursive">
+        &#128071 Press Refresh before searching again &#128071;
+      </p>
+
+      <input
+        type="button"
+        onclick="window.location.reload(true)"
+        value="Refresh"
+      />
+    </div>
+
+    <h2 id="ans" id="divstyle"></h2>
+    <ul id="myID"></ul>
+
+    <script >
+      function Fatch() {
+  fetch("https://countrysapi.573mm.repl.co/countrys")
+    .then((response) => response.json())
+    .then((data) => showV(data));
+}
+
+function showValue() {
+  let name = document.getElementById("name").value;
+  document.getElementById("ans").innerHTML = name;
+  document.getElementById("hello").style.display = "none";
+}
+
+function showV(data) {
+  let mycon = document.querySelector("#body");
+  var name = document.getElementById("name").value;
+  //document.getElementById("ans").innerHTML = name;
+  data.forEach((value) => {
+    let myEl = document.createElement("h2");
+
+    if (name == value.country) {
+      myEl.innerText = `Capital city : ${value.city}`;
+      mycon.appendChild(myEl);
+      document.getElementById("hello").style.display = mycon.appendChild(myEl);
+    }
+  });
+}
+
+    </script>
+  </body>
+</html>
